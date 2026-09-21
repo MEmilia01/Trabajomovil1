@@ -13,7 +13,7 @@ public class ayuda : MonoBehaviour
 
     demas:
     lista dinamica
-    mensaje hayacente de feedback
+    mensaje hayacente de feedback (ya esta borrado // nombre ya esta puesto)
 
     */
 }

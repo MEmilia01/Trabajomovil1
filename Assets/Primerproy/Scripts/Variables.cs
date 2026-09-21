@@ -1,16 +1,12 @@
 using UnityEngine;
 
 public class Variables : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+{ // aca estan las variables
+    private int id = 83000;
+    private int edad = 15;
+    private string nombre;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int Id { get => id; set => id = value; }
+    public int Edad { get => edad; set => edad = value; }
+    public string Nombre { get => nombre; set => nombre = value; }
 }
