@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using static ayuda;
+using UnityEngine.UI;
 
 public class Listadatos : MonoBehaviour
 {
@@ -17,6 +17,7 @@ public class Listadatos : MonoBehaviour
     }
 
     [Header("Variables de ayuda")]
+    [Tooltip("Esto es para ver que aparescan en debug al menos")]
     public string muestra = "Hola";
     public int ultimoID;
 
@@ -28,6 +29,13 @@ public class Listadatos : MonoBehaviour
     public List<Variables> listaDatos = new List<Variables>();
     private List<int> idsLibres = new List<int>();
     //este segundo, va a servir para cuando haya huecos
+
+    [Header("UI - Scroll View")]
+    [Tooltip("El objeto Content del Scroll View")]
+    public Transform contentTransform;
+
+    [Tooltip("Prefab de cada item de la lista (debe tener un Text hijo para el nombre)")]
+    public GameObject itemPrefab;
 
 
 
@@ -70,6 +78,8 @@ public class Listadatos : MonoBehaviour
             ultimoID++;
         }
 
+        RefrescarUI();
+
     }
 
     public void QuitarJugador()
@@ -89,13 +99,50 @@ public class Listadatos : MonoBehaviour
                 break;
             }
         }
+
+        RefrescarUI();
     }
 
     public void MostrarLista()
     {
+        Debug.Log(muestra);
         for (int i = 0; i < listaDatos.Count; i++)
         { Debug.Log("El ID: " + listaDatos[i].indice + " y el nombre " + listaDatos[i].nombre); }
     }
+
+    public void RefrescarUI()
+    {
+        if (contentTransform == null || itemPrefab == null)
+        {
+            Debug.Log("Algun transform no ha sido asignado xdd");
+            return;
+        }
+
+        // Limpiar hijos previos
+        foreach (Transform child in contentTransform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Crear un item por cada dato
+        foreach (var dato in listaDatos)
+        {
+            GameObject newItem = Instantiate(itemPrefab, contentTransform);
+
+            // Ejemplo: buscar un Text y poner el nombre
+            TextMeshProUGUI textoNombre = newItem.GetComponent<TextMeshProUGUI>();
+            if (textoNombre != null)
+            {
+                textoNombre.text = $"ID: {dato.indice} || Nombre: {dato.nombre} || Edad: {dato.edad} años)";
+            }
+            else Debug.Log("No aparece nada");
+
+            // Aquí podrías añadir botones, eventos, etc.
+        }
+    }
+
+
+
 
     // Update is called once per frame
     void Update()
@@ -104,8 +151,7 @@ public class Listadatos : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Y))
         {
             //aca para ver el nuevo añadido
-        Debug.Log(muestra);
-            MostrarLista();
+            //MostrarLista();
         }
         else if (Input.GetKeyDown(KeyCode.Z)) { Anadirjugador(); }
         else if (Input.GetKeyDown(KeyCode.W)) { QuitarJugador(); }
