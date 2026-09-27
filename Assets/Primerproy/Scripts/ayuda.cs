@@ -75,6 +75,12 @@ public class ayuda : MonoBehaviour
 
     }
 
+    IEnumerator NuevoPersonajelista()
+    { 
+        
+        yield return new WaitForSeconds(1f);
+    }
+
     public void NuevaPersona()
     {
        listaDatos.Add(new Datos { indice = ultimoID, edad = 15, nombre = "Juanco" });        
