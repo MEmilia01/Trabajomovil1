@@ -59,7 +59,18 @@ public class Listadatos : MonoBehaviour
 
     public void Anadirjugador()
     {
+        string nombrejugador = nombrepuesto.text;
+        string edadjugador = edadpuesta.text;
+        int edadjug = int.Parse(edadjugador);
         //revisar si hay algun hueco, sino ++ al ultimo
+
+        if(nombrejugador == "" || nombrejugador == " " || edadjug < 15)
+        {
+            menumanager.AbrirPop();
+            if(edadjug < 15) {  menumanager.advertenciatexto.text = "Eres demasiado menor"; return; }
+            else menumanager.advertenciatexto.text = "Ese nombre esta mal"; return;
+        }
+
 
         if (idslibres.Count > 0)
         {
@@ -79,13 +90,13 @@ public class Listadatos : MonoBehaviour
             // Lo quitamos de la lista de libres
             idslibres.RemoveAt(indiceMenor);
 
-            listadatos.Add(new Variables { indice = idAUsar, edad = 19, nombre = "Mauricio" });
+            listadatos.Add(new Variables { indice = idAUsar, edad = edadjug, nombre = nombrejugador });
             Debug.Log("Guardado especial: " + idAUsar);
         }
         else
         {
             int nuevoId = ultimoID;
-            listadatos.Add(new Variables { indice = nuevoId, edad = 15, nombre = "Juanco" });
+            listadatos.Add(new Variables { indice = nuevoId, edad = edadjug, nombre = nombrejugador });
             Debug.Log("Guardado: " + nuevoId);
             ultimoID++;
         }
@@ -93,6 +104,9 @@ public class Listadatos : MonoBehaviour
         RefrescarUI();
 
     }
+
+
+
 
     public void QuitarJugador()
     {
@@ -145,6 +159,9 @@ public class Listadatos : MonoBehaviour
 
         RefrescarUI();
     }
+
+
+
 
     public void RefrescarUI()
     {
