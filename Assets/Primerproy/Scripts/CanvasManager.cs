@@ -4,11 +4,16 @@ using TMPro;
 
 public class CanvasManager : MonoBehaviour
 {
+    [Header("Menus")]
     public GameObject menulista;
     public GameObject menuanadir;
     public GameObject menuborrar;
     public GameObject Mensajepop;
     public GameObject Mensajeatras;
+
+    [Header("Scripts necesarios")]
+    [SerializeField] public TMP_Text advertenciatexto;
+
 
 
     void Start()

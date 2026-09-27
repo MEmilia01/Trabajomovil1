@@ -861,8 +861,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1135,7 +1135,7 @@ MonoBehaviour:
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 0
   m_RegexValue: 
-  m_GlobalPointSize: 14
+  m_GlobalPointSize: 80
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -3281,9 +3281,9 @@ MonoBehaviour:
   menumanager: {fileID: 4852343842754457920}
   contentTransform: {fileID: 5967128433012220172}
   itemPrefab: {fileID: 1939924597914866614, guid: 9982ef00976bdaa4f9fcf26eccb8e972, type: 3}
-  idbusqueda: {fileID: 0}
-  nombrepuesto: {fileID: 0}
-  edadpuesta: {fileID: 0}
+  idbusqueda: {fileID: 2180147238967137820}
+  nombrepuesto: {fileID: 6466560193088091587}
+  edadpuesta: {fileID: 1424316533872964122}
 --- !u!1 &4819637137115188003
 GameObject:
   m_ObjectHideFlags: 0
@@ -3864,7 +3864,7 @@ MonoBehaviour:
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 0
   m_RegexValue: 
-  m_GlobalPointSize: 14
+  m_GlobalPointSize: 80
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -4503,8 +4503,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5574,6 +5574,7 @@ MonoBehaviour:
   menuborrar: {fileID: 2634964265073567555}
   Mensajepop: {fileID: 5757089346660676942}
   Mensajeatras: {fileID: 6396305532955067657}
+  advertenciatexto: {fileID: 591928898451456165}
 --- !u!1 &6694640725468716912
 GameObject:
   m_ObjectHideFlags: 0
@@ -6923,7 +6924,7 @@ MonoBehaviour:
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 0
   m_RegexValue: 
-  m_GlobalPointSize: 14
+  m_GlobalPointSize: 80
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -7160,6 +7161,10 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4852343842754457920}
+    - target: {fileID: 31804402307302489, guid: 95f7f0935f15e82438007ccaa4a4839e, type: 3}
+      propertyPath: m_GlobalPointSize
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 2008629601125153497, guid: 95f7f0935f15e82438007ccaa4a4839e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7244,6 +7249,10 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5171451675765171528}
+    - target: {fileID: 8389541891957326035, guid: 95f7f0935f15e82438007ccaa4a4839e, type: 3}
+      propertyPath: m_GlobalPointSize
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 8556750125375265471, guid: 95f7f0935f15e82438007ccaa4a4839e, type: 3}
       propertyPath: m_Name
       value: "menua\xF1adir"

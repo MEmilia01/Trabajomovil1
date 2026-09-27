@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -89,8 +90,9 @@ public class Listadatos : MonoBehaviour
 
     public void QuitarJugador()
     {
-        // primero provar si vale con un numero en especifico
-        int idABorrar = 3;
+        string numerobuscado = idbusqueda.text;
+        //con esto deberia hacer una conversion
+        int idABorrar = int.Parse(numerobuscado);
 
         for (int i = 0; i < listaDatos.Count; i++)
         {
@@ -98,15 +100,22 @@ public class Listadatos : MonoBehaviour
             {
                 // Marcamos ese ID como libre para reutilizar
                 idsLibres.Add(listaDatos[i].indice);
-
                 listaDatos.RemoveAt(i);
                 Debug.Log("Persona con ID " + idABorrar + " eliminada.");
                 break;
+            }
+            else if (listaDatos[i].indice != idABorrar)
+            {
+                menumanager.AbrirPop();
+                menumanager.advertenciatexto.text = "Ese ID no existe o lo estas poniendo mak";
             }
         }
 
         RefrescarUI();
     }
+
+    IEnumerator Eliminarjugador()
+    {  yield  return null; }
 
     public void MostrarLista()
     {
