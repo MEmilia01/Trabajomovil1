@@ -1,17 +1,15 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class Listadatos : MonoBehaviour
 {
-    [SerializeField] public Variables variables;
-    public struct Variableslistas 
-    {  
-        public int id;
-        public int edad;
-        public string nombre;
-    }
+    [Header("Variables de ayuda")]
+    public string muestra = "Hola";
+    public int ultimoID;
 
-    public Variableslistas[] variableslistas;
+    [Header("Scripts necesarios")]
+    public Variables datos;
 
     //Variableslistas variableslistas
     //{

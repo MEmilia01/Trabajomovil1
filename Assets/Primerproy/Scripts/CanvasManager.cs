@@ -4,54 +4,54 @@ using TMPro;
 
 public class CanvasManager : MonoBehaviour
 {
-    public GameObject menuinicio;
     public GameObject menulista;
-    public GameObject Menuanadir;
+    public GameObject menuanadir;
     public GameObject menuborrar;
     public GameObject Mensajepop;
+    public GameObject Mensajeatras;
 
     //
     public TextMeshProUGUI mensaje;
 
     void Start()
     {
-        menuinicio.SetActive(true);
-        menulista.SetActive(false);
-        Menuanadir.SetActive(false);
-        menuborrar.SetActive(false);
-        Mensajepop.SetActive(false);
+        AbrirLista();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     //abrir y cerrar menus
-    public void Abririnicio()
+    public void AbrirLista()
     {
-        menuinicio.SetActive(true);
-        menulista.SetActive(false);
-        Menuanadir.SetActive(false);
+        Mensajeatras.SetActive(false);
+        menulista.SetActive(true);
+        menuanadir.SetActive(false);
         menuborrar.SetActive(false);
+        Mensajepop.SetActive(false);
+    }
+    public void AbrirAñadir()
+    {
+        Mensajeatras.SetActive(false);
+        menulista.SetActive(false);
+        menuanadir.SetActive(true);
+        menuborrar.SetActive(false);
+        Mensajepop.SetActive(false);
+    }
+    public void AbrirBorrar()
+    {
+        Mensajeatras.SetActive(false);
+        menulista.SetActive(false);
+        menuanadir.SetActive(false);
+        menuborrar.SetActive(true);
         Mensajepop.SetActive(false);
     }
 
-    public void Abrirlista()
-    {
-        menuinicio.SetActive(false);
-        menulista.SetActive(true);
-        Menuanadir.SetActive(false);
-        menuborrar.SetActive(false);
-        Mensajepop.SetActive(false);
+    //estos son especiales
+    public void AbrirPop() 
+    { 
+        Mensajepop.SetActive(true); 
+
     }
+    public void AbrirAtras() { Mensajeatras.SetActive(true); }
+    public void CerrarPop() { Mensajepop.SetActive(false); }
+
+    public void CerrarAtras() { Mensajeatras.SetActive(false); }
 }
