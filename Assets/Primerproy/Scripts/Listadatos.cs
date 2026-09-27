@@ -27,8 +27,8 @@ public class Listadatos : MonoBehaviour
     public CanvasManager menumanager;
 
     [Header("Listas")]
-    public List<Variables> listaDatos = new List<Variables>();
-    private List<int> idsLibres = new List<int>();
+    public List<Variables> listadatos = new List<Variables>();
+    private List<int> idslibres = new List<int>();
     //este segundo, va a servir para cuando haya huecos
 
     [Header("Jugadores creados")]
@@ -44,44 +44,48 @@ public class Listadatos : MonoBehaviour
     public TMP_InputField edadpuesta;
 
     [Header("Ordenar datos")]
-    public Dropdown miDropdown;
+    public TMP_Dropdown opcionesorden;
 
 
 
     void Start()
     {
         ultimoID = 0;
+
+        //el dropdown es un quebradero de cabeza
+        opcionesorden.onValueChanged.RemoveAllListeners();
+        opcionesorden.onValueChanged.AddListener(OnDropdownChanged);
     }
 
     public void Anadirjugador()
     {
         //revisar si hay algun hueco, sino ++ al ultimo
 
-        if (idsLibres.Count > 0)
+        if (idslibres.Count > 0)
         {
             // Buscamos el menor ID libre
-            int idAUsar = idsLibres[0];
+            int idAUsar = idslibres[0];
             int indiceMenor = 0;
 
-            for (int i = 1; i < idsLibres.Count; i++)
+            for (int i = 1; i < idslibres.Count; i++)
             {
-                if (idsLibres[i] < idAUsar)
+                if (idslibres[i] < idAUsar)
                 {
-                    idAUsar = idsLibres[i];
+                    idAUsar = idslibres[i];
                     indiceMenor = i;
                 }
             }
 
             // Lo quitamos de la lista de libres
-            idsLibres.RemoveAt(indiceMenor);
+            idslibres.RemoveAt(indiceMenor);
 
-            listaDatos.Add(new Variables { indice = idAUsar, edad = 19, nombre = "Mauricio" });
+            listadatos.Add(new Variables { indice = idAUsar, edad = 19, nombre = "Mauricio" });
             Debug.Log("Guardado especial: " + idAUsar);
         }
         else
         {
             int nuevoId = ultimoID;
-            listaDatos.Add(new Variables { indice = nuevoId, edad = 15, nombre = "Juanco" });
+            listadatos.Add(new Variables { indice = nuevoId, edad = 15, nombre = "Juanco" });
             Debug.Log("Guardado: " + nuevoId);
             ultimoID++;
         }
@@ -103,9 +107,9 @@ public class Listadatos : MonoBehaviour
         bool encontrado = false;
         //me esta dando problemas pop
 
-        for (int i = 0; i < listaDatos.Count; i++)
+        for (int i = 0; i < listadatos.Count; i++)
         {
-            if (listaDatos[i].indice == idABorrar)
+            if (listadatos[i].indice == idABorrar)
             {
                 encontrado = true;
                 break;
@@ -119,18 +123,18 @@ public class Listadatos : MonoBehaviour
             yield break;
         }
 
-        for (int i = 0; i < listaDatos.Count; i++)
+        for (int i = 0; i < listadatos.Count; i++)
         {
-            if (listaDatos[i].indice == idABorrar)
+            if (listadatos[i].indice == idABorrar)
             {
                 // Marcamos ese ID como libre para reutilizar
-                idsLibres.Add(listaDatos[i].indice);
+                idslibres.Add(listadatos[i].indice);
                 menumanager.AbrirAtras();
                 menumanager.IniciarTemporizador(3f);
 
                 yield return new WaitForSeconds(3f);
 
-                listaDatos.RemoveAt(i);
+                listadatos.RemoveAt(i);
 
                 menumanager.ActivarEliminado();
                 Debug.Log("Persona con ID " + idABorrar + " eliminada.");
@@ -157,7 +161,7 @@ public class Listadatos : MonoBehaviour
         }
 
         // Crear un item por cada dato
-        foreach (var dato in listaDatos)
+        foreach (var dato in listadatos)
         {
             GameObject newItem = Instantiate(itemPrefab, contentTransform);
 
@@ -173,16 +177,32 @@ public class Listadatos : MonoBehaviour
         }
     }
 
+    void OnDropdownChanged(int indice)
+    {
+        switch (indice)
+        {
+            case 0:
+                OrdenarID();
+                break;
+            case 1:
+                OrdenarEdad();
+                break;
+            default:
+                Debug.Log("Opción no reconocida");
+                break;
+        }
+    }
+
     public void OrdenarID() 
     {
         Debug.Log("entra dentro para organizar");
-        listaDatos.Sort((a, b) => a.indice.CompareTo(b.indice));
+        listadatos.Sort((a, b) => a.indice.CompareTo(b.indice));
         RefrescarUI();
     }
     public void OrdenarEdad() 
     {
         Debug.Log("Que haces");
-        listaDatos.Sort((a, b) => a.edad.CompareTo(b.edad));
+        listadatos.Sort((a, b) => a.edad.CompareTo(b.edad));
         RefrescarUI();
     }
 

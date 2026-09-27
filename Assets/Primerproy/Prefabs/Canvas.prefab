@@ -3284,7 +3284,7 @@ MonoBehaviour:
   idbusqueda: {fileID: 2180147238967137820}
   nombrepuesto: {fileID: 6466560193088091587}
   edadpuesta: {fileID: 1424316533872964122}
-  miDropdown: {fileID: 0}
+  opcionesorden: {fileID: 7973840788736045562}
 --- !u!1 &4819637137115188003
 GameObject:
   m_ObjectHideFlags: 0
@@ -4184,31 +4184,7 @@ MonoBehaviour:
       m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5171451675765171528}
-        m_TargetAssemblyTypeName: Listadatos, Assembly-CSharp
-        m_MethodName: OrdenarID
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5171451675765171528}
-        m_TargetAssemblyTypeName: Listadatos, Assembly-CSharp
-        m_MethodName: OrdenarEdad
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_AlphaFadeSpeed: 0.15
 --- !u!1 &5445871685042419889
 GameObject:
