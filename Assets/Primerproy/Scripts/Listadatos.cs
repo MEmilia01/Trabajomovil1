@@ -6,12 +6,22 @@ using static ayuda;
 
 public class Listadatos : MonoBehaviour
 {
+    public class Variables
+    { // aca estan las variable
+
+        [Header("Lista de datos para los personajes")]
+        public int indice;
+        public int edad;
+        public string nombre;
+
+    }
+
     [Header("Variables de ayuda")]
     public string muestra = "Hola";
     public int ultimoID;
 
     [Header("Scripts necesarios")]
-    public Variables datos;
+    //public Variables datos;
     public CanvasManager menumanager;
 
     [Header("Listas")]
@@ -62,9 +72,27 @@ public class Listadatos : MonoBehaviour
 
     }
 
+    public void QuitarJugador()
+    {
+        // primero provar si vale con un numero en especifico
+        int idABorrar = 3;
+
+        for (int i = 0; i < listaDatos.Count; i++)
+        {
+            if (listaDatos[i].indice == idABorrar)
+            {
+                // Marcamos ese ID como libre para reutilizar
+                idsLibres.Add(listaDatos[i].indice);
+
+                listaDatos.RemoveAt(i);
+                Debug.Log("Persona con ID " + idABorrar + " eliminada.");
+                break;
+            }
+        }
+    }
+
     public void MostrarLista()
     {
-        Debug.Log(muestra);
         for (int i = 0; i < listaDatos.Count; i++)
         { Debug.Log("El ID: " + listaDatos[i].indice + " y el nombre " + listaDatos[i].nombre); }
     }
@@ -76,9 +104,11 @@ public class Listadatos : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Y))
         {
             //aca para ver el nuevo añadido
+        Debug.Log(muestra);
             MostrarLista();
         }
         else if (Input.GetKeyDown(KeyCode.Z)) { Anadirjugador(); }
+        else if (Input.GetKeyDown(KeyCode.W)) { QuitarJugador(); }
 
     }
 }

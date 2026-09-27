@@ -13,7 +13,7 @@ public class CanvasManager : MonoBehaviour
 
     void Start()
     {
-        //AbrirLista();
+        AbrirLista();
     }
 
     //abrir y cerrar menus
