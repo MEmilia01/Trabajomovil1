@@ -43,12 +43,14 @@ public class Listadatos : MonoBehaviour
     public TMP_InputField nombrepuesto;
     public TMP_InputField edadpuesta;
 
+    [Header("Ordenar datos")]
+    public Dropdown miDropdown;
+
 
 
     void Start()
     {
         ultimoID = 0;
-
     }
 
     public void Anadirjugador()
@@ -113,7 +115,7 @@ public class Listadatos : MonoBehaviour
         if (!encontrado)
         {
             menumanager.AbrirPop();
-            menumanager.advertenciatexto.text = "Ese ID no existe o lo estás poniendo mal.";
+            menumanager.advertenciatexto.text = "Ese ID no existe o lo estás poniendo mak";
             yield break;
         }
 
@@ -124,13 +126,13 @@ public class Listadatos : MonoBehaviour
                 // Marcamos ese ID como libre para reutilizar
                 idsLibres.Add(listaDatos[i].indice);
                 menumanager.AbrirAtras();
+                menumanager.IniciarTemporizador(3f);
 
                 yield return new WaitForSeconds(3f);
 
                 listaDatos.RemoveAt(i);
 
-                menumanager.eliminado.SetActive(true);
-                menumanager.botonvolver.SetActive(true);
+                menumanager.ActivarEliminado();
                 Debug.Log("Persona con ID " + idABorrar + " eliminada.");
                 break;
             }
@@ -138,13 +140,6 @@ public class Listadatos : MonoBehaviour
         }
 
         RefrescarUI();
-    }
-
-    public void MostrarLista()
-    {
-        Debug.Log(muestra);
-        for (int i = 0; i < listaDatos.Count; i++)
-        { Debug.Log("El ID: " + listaDatos[i].indice + " y el nombre " + listaDatos[i].nombre); }
     }
 
     public void RefrescarUI()
@@ -178,20 +173,17 @@ public class Listadatos : MonoBehaviour
         }
     }
 
-
-
-
-    // Update is called once per frame
-    void Update()
+    public void OrdenarID() 
     {
-
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            //aca para ver el nuevo añadido
-            //MostrarLista();
-        }
-        else if (Input.GetKeyDown(KeyCode.Z)) { Anadirjugador(); }
-        else if (Input.GetKeyDown(KeyCode.W)) { QuitarJugador(); }
-
+        Debug.Log("entra dentro para organizar");
+        listaDatos.Sort((a, b) => a.indice.CompareTo(b.indice));
+        RefrescarUI();
     }
+    public void OrdenarEdad() 
+    {
+        Debug.Log("Que haces");
+        listaDatos.Sort((a, b) => a.edad.CompareTo(b.edad));
+        RefrescarUI();
+    }
+
 }

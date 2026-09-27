@@ -19,6 +19,10 @@ public class CanvasManager : MonoBehaviour
     public GameObject eliminado;
     public GameObject botonvolver;
 
+    [Header("Temporizador")]
+    private float tiemporestante;
+    public bool ontemporizador;
+
 
     void Start()
     {
@@ -58,6 +62,54 @@ public class CanvasManager : MonoBehaviour
     public void AbrirAtras() { Mensajeatras.SetActive(true); }
     public void CerrarPop() { Mensajepop.SetActive(false); }
 
-    public void CerrarAtras() { Mensajeatras.SetActive(false); }
+    public void CerrarAtras() 
+    { 
+        Mensajeatras.SetActive(false);
+        DesactivarEliminado();
+    }
+    public void ActivarEliminado() 
+    {
+        eliminado.SetActive(true);
+        botonvolver.SetActive(true);
+    }
+    public void DesactivarEliminado() 
+    {
+        eliminado.SetActive(false);
+        botonvolver.SetActive(false);
+    }
+
+
+    //el temporizador
+    public void IniciarTemporizador(float duracionSegundos)
+    {
+        if (cuentaatras == null)
+        {
+            Debug.Log("No hay cuantaatras");
+            return;
+        }
+
+        tiemporestante = duracionSegundos;
+        ontemporizador = true;
+    }
+
+    void Update()
+    {
+        if (ontemporizador)
+        {
+            tiemporestante -= Time.deltaTime;
+
+            if (tiemporestante <= 0f)
+            {
+                tiemporestante = 0f;
+                ontemporizador = false;
+                cuentaatras.text = "0";
+            }
+            else
+            {
+                // Mostrar tiempo redondeado hacia arriba (3, 2, 1)
+                cuentaatras.text = Mathf.CeilToInt(tiemporestante).ToString();
+            }
+        }
+    }
 
 }
