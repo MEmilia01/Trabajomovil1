@@ -61,7 +61,7 @@ public class ayuda : MonoBehaviour
                 Debug.Log(numanterior + " y " + listaDatos[i].indice);
                 if (numanterior != listaDatos[i].indice)
                 {
-                    //listaDatos.Add(new Datos { indice = numanterior, edad = 15, nombre = "Juanco" });
+                    listaDatos.Add(new Datos { indice = numanterior, edad = 15, nombre = "Juanco" });
                     Debug.Log("Guardado expecial (" + numanterior + ")");
                     break;
                 }
@@ -75,11 +75,11 @@ public class ayuda : MonoBehaviour
 
     }
 
-    IEnumerator NuevoPersonajelista()
-    { 
+    //IEnumerator NuevoPersonajelista()
+    //{ 
         
-        yield return new WaitForSeconds(1f);
-    }
+    //    yield return new WaitForSeconds(1f);
+    //}
 
     public void NuevaPersona()
     {

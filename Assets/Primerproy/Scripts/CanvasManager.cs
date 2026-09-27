@@ -10,12 +10,10 @@ public class CanvasManager : MonoBehaviour
     public GameObject Mensajepop;
     public GameObject Mensajeatras;
 
-    //
-    public TextMeshProUGUI mensaje;
 
     void Start()
     {
-        AbrirLista();
+        //AbrirLista();
     }
 
     //abrir y cerrar menus
@@ -45,13 +43,10 @@ public class CanvasManager : MonoBehaviour
     }
 
     //estos son especiales
-    public void AbrirPop() 
-    { 
-        Mensajepop.SetActive(true); 
-
-    }
+    public void AbrirPop() { Mensajepop.SetActive(true); }
     public void AbrirAtras() { Mensajeatras.SetActive(true); }
     public void CerrarPop() { Mensajepop.SetActive(false); }
 
     public void CerrarAtras() { Mensajeatras.SetActive(false); }
+
 }
