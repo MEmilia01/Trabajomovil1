@@ -5575,6 +5575,9 @@ MonoBehaviour:
   Mensajepop: {fileID: 5757089346660676942}
   Mensajeatras: {fileID: 6396305532955067657}
   advertenciatexto: {fileID: 591928898451456165}
+  cuentaatras: {fileID: 3280021386250599960}
+  eliminado: {fileID: 6505750771159542079}
+  botonvolver: {fileID: 6205243804726199345}
 --- !u!1 &6694640725468716912
 GameObject:
   m_ObjectHideFlags: 0

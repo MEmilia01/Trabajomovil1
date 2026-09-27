@@ -11,14 +11,20 @@ public class CanvasManager : MonoBehaviour
     public GameObject Mensajepop;
     public GameObject Mensajeatras;
 
-    [Header("Scripts necesarios")]
+    [Header("Textos")]
     [SerializeField] public TMP_Text advertenciatexto;
+    [SerializeField] public TMP_Text cuentaatras;
 
+    [Header("Textos secundarios")]
+    public GameObject eliminado;
+    public GameObject botonvolver;
 
 
     void Start()
     {
         AbrirLista();
+        eliminado.SetActive(false);
+        botonvolver.SetActive(false);
     }
 
     //abrir y cerrar menus

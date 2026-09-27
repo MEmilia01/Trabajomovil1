@@ -90,9 +90,32 @@ public class Listadatos : MonoBehaviour
 
     public void QuitarJugador()
     {
+        StartCoroutine(QuitarJugadorCoroutine());
+    }
+
+    public IEnumerator QuitarJugadorCoroutine()
+    {
         string numerobuscado = idbusqueda.text;
         //con esto deberia hacer una conversion
         int idABorrar = int.Parse(numerobuscado);
+        bool encontrado = false;
+        //me esta dando problemas pop
+
+        for (int i = 0; i < listaDatos.Count; i++)
+        {
+            if (listaDatos[i].indice == idABorrar)
+            {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado)
+        {
+            menumanager.AbrirPop();
+            menumanager.advertenciatexto.text = "Ese ID no existe o lo estás poniendo mal.";
+            yield break;
+        }
 
         for (int i = 0; i < listaDatos.Count; i++)
         {
@@ -100,22 +123,22 @@ public class Listadatos : MonoBehaviour
             {
                 // Marcamos ese ID como libre para reutilizar
                 idsLibres.Add(listaDatos[i].indice);
+                menumanager.AbrirAtras();
+
+                yield return new WaitForSeconds(3f);
+
                 listaDatos.RemoveAt(i);
+
+                menumanager.eliminado.SetActive(true);
+                menumanager.botonvolver.SetActive(true);
                 Debug.Log("Persona con ID " + idABorrar + " eliminada.");
                 break;
             }
-            else if (listaDatos[i].indice != idABorrar)
-            {
-                menumanager.AbrirPop();
-                menumanager.advertenciatexto.text = "Ese ID no existe o lo estas poniendo mak";
-            }
+            
         }
 
         RefrescarUI();
     }
-
-    IEnumerator Eliminarjugador()
-    {  yield  return null; }
 
     public void MostrarLista()
     {
