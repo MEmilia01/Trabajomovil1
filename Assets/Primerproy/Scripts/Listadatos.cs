@@ -30,12 +30,17 @@ public class Listadatos : MonoBehaviour
     private List<int> idsLibres = new List<int>();
     //este segundo, va a servir para cuando haya huecos
 
-    [Header("UI - Scroll View")]
+    [Header("Jugadores creados")]
     [Tooltip("El objeto Content del Scroll View")]
     public Transform contentTransform;
 
     [Tooltip("Prefab de cada item de la lista (debe tener un Text hijo para el nombre)")]
     public GameObject itemPrefab;
+
+    [Header("Datos obtenidos")]
+    public TMP_InputField idbusqueda;
+    public TMP_InputField nombrepuesto;
+    public TMP_InputField edadpuesta;
 
 
 
