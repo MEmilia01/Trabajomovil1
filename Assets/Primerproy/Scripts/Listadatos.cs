@@ -129,9 +129,16 @@ public class Listadatos : MonoBehaviour
     {
         string numerobuscado = idbusqueda.text;
         //con esto deberia hacer una conversion
-        int idABorrar = int.Parse(numerobuscado);
+        //int idABorrar = int.Parse(numerobuscado);
         bool encontrado = false;
         //me esta dando problemas pop
+
+        if (!int.TryParse(numerobuscado, out int idABorrar))
+        {
+            menumanager.AbrirPop();
+            menumanager.advertenciatexto.text = "Id invalida";
+            yield break;
+        }
 
         for (int i = 0; i < listadatos.Count; i++)
         {
