@@ -47,27 +47,36 @@ public class Listadatos : MonoBehaviour
     public TMP_Dropdown opcionesorden;
 
 
-
     void Start()
     {
         ultimoID = 0;
 
-        //el dropdown es un quebradero de cabeza
         opcionesorden.onValueChanged.RemoveAllListeners();
         opcionesorden.onValueChanged.AddListener(OnDropdownChanged);
     }
+
+
+
+    //AÑADIR Y QUITAR
 
     public void Anadirjugador()
     {
         string nombrejugador = nombrepuesto.text;
         string edadjugador = edadpuesta.text;
-        int edadjug = int.Parse(edadjugador);
-        //revisar si hay algun hueco, sino ++ al ultimo
+        //int edadjug = int.Parse(edadjugador);
+        
+        if (!int.TryParse(edadjugador, out int edadjug))
+        {
+            menumanager.AbrirPop();
+            menumanager.advertenciatexto.text = "La edad debe ser un número";
+            return;
+        }
 
-        if(nombrejugador == "" || nombrejugador == " " || edadjug < 15)
+        if (nombrejugador == "" || nombrejugador == " " || edadjug < 15 || edadjug != int.Parse(edadjugador))
         {
             menumanager.AbrirPop();
             if(edadjug < 15) {  menumanager.advertenciatexto.text = "Eres demasiado menor"; return; }
+            else if (edadjug != int.Parse(edadjugador)) { menumanager.advertenciatexto.text = "La edad debe de ser un numero"; return; }
             else menumanager.advertenciatexto.text = "Ese nombre esta mal"; return;
         }
 
@@ -91,22 +100,25 @@ public class Listadatos : MonoBehaviour
             idslibres.RemoveAt(indiceMenor);
 
             listadatos.Add(new Variables { indice = idAUsar, edad = edadjug, nombre = nombrejugador });
-            Debug.Log("Guardado especial: " + idAUsar);
+            menumanager.AbrirFeliz();
+
+            nombrepuesto.text = "";
+            edadpuesta.text = "";
         }
         else
         {
             int nuevoId = ultimoID;
             listadatos.Add(new Variables { indice = nuevoId, edad = edadjug, nombre = nombrejugador });
-            Debug.Log("Guardado: " + nuevoId);
+            menumanager.AbrirFeliz();
+
+            nombrepuesto.text = "";
+            edadpuesta.text = "";
             ultimoID++;
         }
 
         RefrescarUI();
 
     }
-
-
-
 
     public void QuitarJugador()
     {
@@ -150,8 +162,8 @@ public class Listadatos : MonoBehaviour
 
                 listadatos.RemoveAt(i);
 
+                idbusqueda.text = "";
                 menumanager.ActivarEliminado();
-                Debug.Log("Persona con ID " + idABorrar + " eliminada.");
                 break;
             }
             
@@ -161,7 +173,7 @@ public class Listadatos : MonoBehaviour
     }
 
 
-
+    //ORGANIZAR
 
     public void RefrescarUI()
     {
@@ -212,13 +224,11 @@ public class Listadatos : MonoBehaviour
 
     public void OrdenarID() 
     {
-        Debug.Log("entra dentro para organizar");
         listadatos.Sort((a, b) => a.indice.CompareTo(b.indice));
         RefrescarUI();
     }
     public void OrdenarEdad() 
     {
-        Debug.Log("Que haces");
         listadatos.Sort((a, b) => a.edad.CompareTo(b.edad));
         RefrescarUI();
     }

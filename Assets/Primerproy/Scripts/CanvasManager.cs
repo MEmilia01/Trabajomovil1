@@ -9,6 +9,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject menuanadir;
     public GameObject menuborrar;
     public GameObject Mensajepop;
+    public GameObject Mensajefeliz;
     public GameObject Mensajeatras;
 
     [Header("Textos")]
@@ -27,8 +28,7 @@ public class CanvasManager : MonoBehaviour
     void Start()
     {
         AbrirLista();
-        eliminado.SetActive(false);
-        botonvolver.SetActive(false);
+        DesactivarEliminado();
     }
 
     //abrir y cerrar menus
@@ -39,6 +39,7 @@ public class CanvasManager : MonoBehaviour
         menuanadir.SetActive(false);
         menuborrar.SetActive(false);
         Mensajepop.SetActive(false);
+        Mensajefeliz.SetActive(false);
     }
     public void AbrirAñadir()
     {
@@ -47,6 +48,7 @@ public class CanvasManager : MonoBehaviour
         menuanadir.SetActive(true);
         menuborrar.SetActive(false);
         Mensajepop.SetActive(false);
+        Mensajefeliz.SetActive(false);
     }
     public void AbrirBorrar()
     {
@@ -55,12 +57,15 @@ public class CanvasManager : MonoBehaviour
         menuanadir.SetActive(false);
         menuborrar.SetActive(true);
         Mensajepop.SetActive(false);
+        Mensajefeliz.SetActive(false);
     }
 
     //estos son especiales
     public void AbrirPop() { Mensajepop.SetActive(true); }
+    public void AbrirFeliz() { Mensajefeliz.SetActive(true); }
     public void AbrirAtras() { Mensajeatras.SetActive(true); }
     public void CerrarPop() { Mensajepop.SetActive(false); }
+    public void CerrarFeliz() { Mensajefeliz.SetActive(false); }
 
     public void CerrarAtras() 
     { 
@@ -106,7 +111,7 @@ public class CanvasManager : MonoBehaviour
             }
             else
             {
-                // Mostrar tiempo redondeado hacia arriba (3, 2, 1)
+                // tiempo redondeado hacia arriba 3/2/1
                 cuentaatras.text = Mathf.CeilToInt(tiemporestante).ToString();
             }
         }
